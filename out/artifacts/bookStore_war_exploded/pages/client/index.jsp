@@ -8,11 +8,9 @@
 <title>书城首页</title>
 	<%@include file="/pages/common/head.jsp"%>
 	<script type="text/javascript">
+		// 给加入购物车按钮绑定单击事件
 		$(function () {
 			$("button.addToCart").click(function () {
-				//在事件响应的function函数中，有一个this对象，这个this对象
-				//是当前正在响应事件的dom对象
-				//attr() 可以设置和获取属性的值
 				let bookId = $(this).attr("bookId");
 				location.href = "http://localhost:8080/bookStore/cartServlet?action=addItem&id=" + bookId;
 			});
@@ -55,11 +53,22 @@
 					<input type="submit" va="查询"/>
 				</form>
 			</div>
-			<div class="cont">
-				<span>您的购物车中有3件商品</span>
-				<div>
-					您刚刚将<span style="color: red">时间简史</span>加入到了购物车中
-				</div>
+			<div style="text-align:center">
+				<c:if test="${empty sessionScope.cart.items}">
+					<%--购物车为空的输出--%>
+					<div>
+						<span style="color:	red">当前购物车为空</span>
+					</div>
+				</c:if>
+				<c:if test="${not empty sessionScope.cart.items}">
+					<%--购物车为非空的输出--%>
+					<div class="cont">
+						<span>您的购物车中有${sessionScope.cart.totalCount}件商品</span>
+						<div>
+							您刚刚将<span style="color: red">${sessionScope.lastName}</span>加入到了购物车中
+						</div>
+					</div>
+				</c:if>
 			</div>
 
 			<c:forEach items="${requestScope.page.items}" var="book">
