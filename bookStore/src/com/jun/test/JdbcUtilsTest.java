@@ -13,10 +13,10 @@ import java.sql.SQLException;
 public class JdbcUtilsTest {
     @Test
     public void testJdbcUtils()  {
-        for (int i = 0; i < 100; i++) {
-            Connection connect = JdbcUtils.getConnection();
-            System.out.println(connect);
-            JdbcUtils.close(connect);
-        }
+//        for (int i = 0; i < 100; i++) {
+//            Connection connect = JdbcUtils.getConnection();
+//            System.out.println(connect);
+//            JdbcUtils.close(connect);
+//        }
     }
 }

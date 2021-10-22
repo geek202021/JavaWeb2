@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>我的订单</title>
-<link type="text/css" rel="stylesheet" href="../../static/css/style.css" >
+	<%@include file="/pages/common/head.jsp"%>
 <style type="text/css">
 	h1 {
 		text-align: center;
@@ -14,14 +14,9 @@
 </head>
 <body>
 	<div id="header">
-			<img class="logo_img" alt="" src="../../static/img/logo.gif" >
+			<img class="logo_img" alt="" src="static/img/logo.gif" >
 			<span class="wel_word">我的订单</span>
-			<div>
-				<span>欢迎<span class="um_span">张总</span>光临尚硅谷书城</span>
-				<a href="../order/order.jsp">我的订单</a>
-				<a href="../client/index.jsp">注销</a>&nbsp;&nbsp;
-				<a href="../client/index.jsp">返回</a>
-			</div>
+			<%@include file="/pages/common/login_success_munu.jsp"%>
 	</div>
 	<div id="main" class="box_order">
 		<table>
@@ -40,39 +35,9 @@
 				<td>88</td>
 				<td>未发货</td>
 				<td><a href="#">查看详情</a></td>
-			</tr>	
-			<tr>
-				<td>12354859686</td>
-				<td>2015.04.20</td>
-				<td>20.00</td>
-				<td>88</td>
-				<td>已发货</td>
-				<td><a href="#">查看详情</a></td>
-			</tr>	
-			<tr>
-				<td>12354859686</td>
-				<td>2014.01.23</td>
-				<td>190.00</td>
-				<td>88</td>
-				<td>已完成</td>
-				<td><a href="#">查看详情</a></td>
-			</tr>		
-			<tr>
-				<td>12354859686</td>
-				<td>2014.01.23</td>
-				<td>190.00</td>
-				<td>88</td>
-				<td>已完成</td>
-				<td><a href="#">查看详情</a></td>
-			</tr>		
-			<tr>
-				<td>12354859686</td>
-				<td>2014.01.23</td>
-				<td>190.00</td>
-				<td>88</td>
-				<td>已完成</td>
-				<td><a href="#">查看详情</a></td>
-			</tr>		
+			</tr>
+
+
 		</table>
 	</div>
 	<%@ include file="/pages/common/foot.jsp" %>

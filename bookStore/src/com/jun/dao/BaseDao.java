@@ -27,10 +27,8 @@ public abstract class BaseDao {
             return queryRunner.update(connect, sql, args);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-           JdbcUtils.close(connect);
+            throw new RuntimeException(e);
         }
-        return -1;
     }
     //2.查询返回一个 javaBean 的 sql 语句
     public <T>T queryForOne(Class<T> type, String sql, Object... args) {
@@ -39,10 +37,8 @@ public abstract class BaseDao {
             return queryRunner.query(connect, sql, new BeanHandler<T>(type), args);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JdbcUtils.close(connect);
+            throw new RuntimeException(e);
         }
-        return null;
     }
     //3.查询返回一个 javaBean 的 sql 语句,获取对象集合
     public <T> List<T> queryForList(Class<T> type, String sql, Object... args){
@@ -51,10 +47,8 @@ public abstract class BaseDao {
             return queryRunner.query(connect, sql, new BeanListHandler<T>(type), args);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JdbcUtils.close(connect);
+            throw new RuntimeException(e);
         }
-        return null;
     }
     //4.执行返回一行一列的 sql 语句,获取某个简单的值
     public Object queryForSingleValue(String sql, Object... args) {
@@ -63,10 +57,8 @@ public abstract class BaseDao {
             return queryRunner.query(connect, sql, new ScalarHandler(), args);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JdbcUtils.close(connect);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
 }

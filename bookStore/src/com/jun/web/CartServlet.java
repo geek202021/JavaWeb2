@@ -6,7 +6,6 @@ import com.jun.bean.CartItem;
 import com.jun.service.BookService;
 import com.jun.service.impl.BookServiceImpl;
 import com.jun.utils.WebUtils;
-import org.apache.commons.dbutils.QueryRunner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
