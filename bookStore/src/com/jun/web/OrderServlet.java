@@ -29,14 +29,15 @@ public class OrderServlet extends BaseServlet{
             return;
         }
         Integer userId = loginUser.getId();
-        String orderId = null;
-        try {
-            orderId = orderService.createOrder(cart,userId);
-            JdbcUtils.commitAndClose();//提交事务
-        } catch (Exception e) {
-            JdbcUtils.rollbackAndClose();//回滚事务
-            e.printStackTrace();
-        }
+//        String orderId = null;
+//        try {
+//            orderId = orderService.createOrder(cart,userId);
+//            JdbcUtils.commitAndClose();//提交事务
+//        } catch (Exception e) {
+//            JdbcUtils.rollbackAndClose();//回滚事务
+//            e.printStackTrace();
+//        }
+        String orderId = orderService.createOrder(cart,userId);
         req.getSession().setAttribute("orderId",orderId);
         resp.sendRedirect(req.getContextPath()+"/pages/cart/checkout.jsp");
     }

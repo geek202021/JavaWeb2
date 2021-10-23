@@ -18,6 +18,8 @@ public abstract class BaseServlet extends HttpServlet {
         // 解决post请求中文乱码问题
         // 一定要在获取请求参数之前调用才有效
         req.setCharacterEncoding("UTF-8");
+        //解决响应中文乱码
+        resp.setContentType("text/html;charset=UTF-8");
         String action = req.getParameter("action");
         // 获取 action 业务鉴别字符串，获取相应的业务 方法反射对象
         //参数1 ：指明获取的方法的名称  参数2：指明获取的方法的形参列表
@@ -31,6 +33,7 @@ public abstract class BaseServlet extends HttpServlet {
             //在baseDao往上抛异常的过程中，抛到servlet然后servlet再抛到baseServlet，
             //通过baseServlet再往过滤器中抛异常
             e.printStackTrace();
+            throw new RuntimeException(e); //把异常抛给Filter过滤器
         }
     }
 }

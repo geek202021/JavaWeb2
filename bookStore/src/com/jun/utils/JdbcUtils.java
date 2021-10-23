@@ -48,7 +48,7 @@ public class JdbcUtils {
                 connect = datasource.getConnection();
                 //保存到ThreadLocal对象中,供后面的JDBC使用
                 conns.set(connect);
-                connect.setAutoCommit(false);
+                connect.setAutoCommit(false);//设置为手动管理事务
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -97,14 +97,14 @@ public class JdbcUtils {
         conns.remove();
     }
 
-//    //3.关闭连接，放回数据库连接池
-//    public static void close(Connection connect) {
-//        if (connect != null) {
-//            try {
-//                connect.close();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    //3.关闭连接，放回数据库连接池
+    public static void close(Connection connect) {
+        if (connect != null) {
+            try {
+                connect.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

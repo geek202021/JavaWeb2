@@ -9,6 +9,18 @@
 	<%@ include file="/pages/common/head.jsp" %>
 	<script type="text/javascript">
 		$(function () {
+			//使用Ajax验证用户名是否可用
+			$("#username").blur(function () {
+				var username = this.value;
+				$.getJSON("http://localhost:8080/bookStore/userServlet", "action=ajaxExistUsername&username="+username, function (data) {
+					if (data.existUsername) {
+						$("span.errorMsg").text("用户名已存在！")
+					} else{
+						$("span.errorMsg").text("用户名可用！")
+					}
+				});
+			});
+
 			// 给验证码图片绑定单击事件
 			$("#img_code").click(function () {
 				// 在事件响应的function函数中有一个this对象。这个this对象，是当前正在响应事件的dom对象

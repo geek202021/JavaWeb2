@@ -7,7 +7,6 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -60,5 +59,4 @@ public abstract class BaseDao {
             throw new RuntimeException(e);
         }
     }
-
 }

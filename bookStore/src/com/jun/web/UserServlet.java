@@ -1,5 +1,6 @@
 package com.jun.web;
 
+import com.google.gson.Gson;
 import com.jun.bean.User;
 import com.jun.service.UserService;
 import com.jun.service.impl.UserServiceImpl;
@@ -10,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 
@@ -37,7 +40,7 @@ public class UserServlet extends BaseServlet{
             req.getSession().setAttribute("user",loginUser);
 
             //登录成功,转发到login_success.jsp页面
-            req.getRequestDispatcher("/pages/user/login_success.jsp").forward(req,resp);
+            req.getRequestDispatcher("/pages/user/error404.jsp").forward(req,resp);
         }
     }
     //3.处理注销的功能(利用session优化登录和注销)
@@ -84,6 +87,18 @@ public class UserServlet extends BaseServlet{
             //转发回注册页面
             req.getRequestDispatcher("/pages/user/regist.jap").forward(req, resp);
         }
+    }
+
+    //3.使用Ajax验证用户名是否可用
+    protected void ajaxExistUsername(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        boolean b = userService.existsUsername(username);
+        //把返回的结果封装成为map对象
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("existUsername", b);
+        Gson gson = new Gson();
+        String json = gson.toJson(resultMap);
+        resp.getWriter().write(json);
     }
 
 
